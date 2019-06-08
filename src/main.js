@@ -11,6 +11,8 @@ import VueRouter from 'vue-router'
 
 import Login from './components/login.vue'
 
+import Admin from './components/admin.vue'
+
 Vue.prototype.$axios = axios
     //注册路由
 Vue.use(VueRouter)
@@ -18,6 +20,9 @@ Vue.use(VueRouter)
 const routes = [{
     path: '/login',
     component: Login
+}, {
+    path: '/',
+    component: Admin
 }];
 
 const router = new VueRouter({
