@@ -1,17 +1,44 @@
 <template>
     <el-container>
-  <el-aside width="200px">Aside</el-aside>
+  <el-aside width="auto">
+      <Aside :isShow='isShow'/>
+  </el-aside>
   <el-container>
-    <el-header>Header</el-header>
-    <el-main>Main</el-main>
+    <el-header>
+      <Header @click='handleChange'/>
+        </el-header>
+    <el-main>
+        <Bread/>
+    </el-main>
   </el-container>
 </el-container>
 </template>
 
 <script>
+//头部
+import Header from './pages/Header.vue'
+//面包屑
+import Bread from './pages/Bread.vue'
+//导航栏
+import Aside from './pages/Aside.vue'
 export default {
-
+    data(){
+      return {
+        isShow:false,
+      }
+    },
+    methods: {
+      handleChange:function(){
+        this.isShow = !this.isShow
+      }
+    },
+    components:{
+        Header,
+        Bread,
+        Aside
+    }
 }
+
 </script>
 
 <style>
