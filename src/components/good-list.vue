@@ -71,11 +71,11 @@
     <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-      :current-page="currentPage4"
-      :page-sizes="[100, 200, 300, 400]"
-      :page-size="100"
+      :current-page="pageIndex"
+      :page-sizes="[5, 10, 15, 20]"
+      :page-size="5"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="400">
+      :total="total">
     </el-pagination>
    
 </div>
@@ -106,6 +106,10 @@ export default {
         ],
         selectGoods: [], // 选中的商品
         serchValue:'',//搜索框的内容
+
+        pageIndex:1,//页数
+        pageSize:5,//每页显示的条数  
+        total:0//总条数 
       }
     },
     mounted() {
@@ -113,10 +117,14 @@ export default {
     },
     methods: {
       handleSizeChange(val) {
-        console.log(`每页 ${val} 条`);
+        // console.log(`每页 ${val} 条`);
+        this.pageSize = val
+        this.getList()
       },
       handleCurrentChange(val) {
-        console.log(`当前页: ${val}`);
+        // console.log(`当前页: ${val}`);
+        this.pageIndex=val
+
       },
       // 条数的切换
     handleSelectionChange(val){
@@ -166,26 +174,19 @@ export default {
     },
     //搜索
     handleSerch(){
-        this.$axios({
-            url:`http://127.0.0.1:8899/admin/goods/getlist?pageIndex=1&pageSize=5&searchvalue=${this.serchValue}`,
-            method:'GET',
-        }).then(res=>{
-            if(res.data.status===0){
-                this.$message.success(res.data.message);
-                this.getList()
-            }else{
-                this.$message.error(message);
-            }
-        })
+        this.getList()
     },
     //获取后台商品数据
     getList(){
         this.$axios({
-            url:'http://127.0.0.1:8899/admin/goods/getlist?pageIndex=1&pageSize=10',
+            url:`http://127.0.0.1:8899/admin/goods/getlist?pageIndex=${this.pageIndex}
+            &pageSize=${this.pageSize}&searchvalue=${this.serchValue}`,
             method:'GET',
         }).then(res=>{
             console.log(res.data);
             this.tableData = res.data.message;
+            // 总条数
+            this.total = res.data.totalcount
         })
     }
     },
