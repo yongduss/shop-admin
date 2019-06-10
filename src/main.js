@@ -13,16 +13,35 @@ import Login from './components/login.vue'
 
 import Admin from './components/admin.vue'
 
+import Category from './components/category.vue'
+
+import Goodlist from './components/good-list.vue'
+
 Vue.prototype.$axios = axios
     //注册路由
 Vue.use(VueRouter)
 
 const routes = [{
-    path: '/login',
-    component: Login
-}, {
     path: '/',
-    component: Admin
+    redirect: '/admin/good-list',
+    meta: '首页'
+}, {
+    path: '/login',
+    component: Login,
+    meta: '登录页'
+}, {
+    path: '/admin',
+    component: Admin,
+    meta: '后台页',
+    children: [{
+        path: 'good-list',
+        component: Goodlist,
+        meta: '商品管理'
+    }, {
+        path: 'category',
+        component: Category,
+        meta: '栏目列表'
+    }]
 }];
 
 const router = new VueRouter({

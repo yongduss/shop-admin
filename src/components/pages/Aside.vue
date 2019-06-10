@@ -20,11 +20,15 @@
             </template>
 
             <el-menu-item index="1-1">
-                <template slot="title">	商品管理</template>
+                <template slot="title">
+                    <router-link to="/admin/good-list" class="router">商品管理</router-link>
+                </template>
             </el-menu-item>
 
             <el-menu-item index="1-2">
-                <template slot="title">栏目管理</template>
+                <template slot="title">
+                    <router-link to="/admin/category" class="router">栏目列表</router-link>
+                </template>
             </el-menu-item>
         </el-submenu>
     </el-menu>
@@ -36,6 +40,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style scope>
+    .router{
+        text-decoration: none;
+        color: inherit;
+    }
 </style>

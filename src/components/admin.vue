@@ -8,7 +8,9 @@
       <Header @click='handleChange'/>
         </el-header>
     <el-main>
+      <!-- 面包 -->
         <Bread/>
+        <router-view></router-view>
     </el-main>
   </el-container>
 </el-container>
