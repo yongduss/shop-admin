@@ -17,6 +17,10 @@ import Category from './components/category.vue'
 
 import Goodlist from './components/good-list.vue'
 
+import Goodadd from './components/good-add.vue'
+
+import Goodedit from './components/good-edit.vue'
+
 Vue.prototype.$axios = axios
     //注册路由
 Vue.use(VueRouter)
@@ -37,7 +41,18 @@ const routes = [{
         path: 'good-list',
         component: Goodlist,
         meta: '商品管理'
-    }, {
+    },
+    {
+        path:'good-add',
+        component:Goodadd,
+        meta:'商品添加'
+    },
+    {
+        path:'good-edit/:id',
+        component:Goodedit,
+        meta:'编辑商品'
+    } ,
+    {
         path: 'category',
         component: Category,
         meta: '栏目列表'

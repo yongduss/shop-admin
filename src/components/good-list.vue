@@ -3,7 +3,7 @@
      <el-row type='flex' justify='space-between'>
         <div class="btn">
             <!-- 按钮 -->
-            <el-button type="primary" round>新增</el-button>
+            <el-button type="primary" round @click='handleToAdd'>新增</el-button>
             <el-button type="danger" round @click='handleDelmore'>删除</el-button>
         </div>
         <div>
@@ -133,7 +133,8 @@ export default {
     },
     // 编辑
     handleEdit(val){
-        console.log(val);
+        // console.log(val);
+        this.$router.push('/admin/good-edit/'+val.id)
     },
     // 删除
     handleDelete(val){
@@ -188,6 +189,9 @@ export default {
             // 总条数
             this.total = res.data.totalcount
         })
+    },
+    handleToAdd(){  //新增
+      this.$router.push('/admin/good-add')
     }
     },
     
