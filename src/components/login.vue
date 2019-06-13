@@ -51,9 +51,11 @@
               // 处理session跨域
         withCredentials: true
             }).then(res=>{
+              console.log(res);
               const {message,status} = res.data;
 
               if(status===0){
+                this.$store.commit('setUser',res.data.message)
                 this.$router.push('/')
               }
 
